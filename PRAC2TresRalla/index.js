@@ -21,6 +21,7 @@
     const Casillas = document.querySelectorAll('.tile');
     const EstatJoc = document.querySelector('#ActualJOC');
     const Restartd = document.querySelector('#reset');
+    const container = document.querySelector('.container');
 
 
 //FUNCIONS PER JUGAR
@@ -47,6 +48,12 @@ ComençaPartida();
 
     }
 
+     function CanviarDeJugador(){
+        currentPlayer = (currentPlayer == "X") ? "0" : "X";
+        EstatJoc.textContent = `${currentPlayer}'s torn`;
+     }
+
+
 
      function ActualitzaTile(tile, index){
         board[index] = currentPlayer;
@@ -54,12 +61,6 @@ ComençaPartida();
         tile.classList.add(`player${currentPlayer}`);
 
 
-     }
-
-
-     function CanviarDeJugador(){
-        currentPlayer = (currentPlayer == "X") ? "0" : "X";
-        EstatJoc.textContent = `${currentPlayer}'s torn`;
      }
 
 
@@ -104,9 +105,19 @@ ComençaPartida();
         currentPlayer = "X";
         board = ['', '', '', '', '', '', '', '', ''];
         EstatJoc.textContent = `${currentPlayer}'s torn`;
-        Casillas.forEach(tile => tile.textContent = "");
+   
         isGameActive = true;
+        Casillas.forEach(tile => {
+            tile.innerText = '';
+            tile.classList.remove('playerX');
+            tile.classList.remove('player0');
+        });
+
      }
+
+
+
+
 
 
 
